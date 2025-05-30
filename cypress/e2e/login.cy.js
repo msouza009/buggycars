@@ -7,8 +7,11 @@ describe('Buggy Cars Rating', () => {
         cy.title().should('eq', 'Buggy Cars Rating')
     })
 
-    it.only('Clica no botão de registro e efetua o registro', () => {
-        cy.get('.btn-success-outline').click().should('have.text', 'Register')
-        
+    it.only('Clica no botão de login e efetua o login', () => {
+        cy.fixture('usuario.json').then((user) => {
+        cy.get('input[placeholder="Login"]').type(user.usuario);
+        cy.get('input[name="password"][type="password"]').type(user.senha);
+        cy.get('.btn-success').click().should('have.text', 'Login');
+    });
     })
 })
